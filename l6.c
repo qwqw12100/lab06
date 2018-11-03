@@ -2,8 +2,8 @@ int main (int argc, char *argv[])
 {
   FLIE* fd
   int n;  
-  fd = fopen("/sys/bus/w1/devices/28-0118423e95ff$/w1_slave","r");
-  char buf[sizeof(/sys/bus/w1/devices/28-0118423e95ff$/w1_slave)];  
+  fd = fopen("/sys/bus/w1/devices/28-021313ce22aa/w1_slave","r");
+  char buf[sizeof(/sys/bus/w1/devices/28-021313ce22aa/w1_slave)];  
 
   if(fd == (FILE *)NULL) { 
     perror("open failed"); 
