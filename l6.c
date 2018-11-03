@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-int main (int argc, char *argv[])
+int main ()
 {
-  FLIE* fd;
+  FILE *fd;
   int n;  
   char buf[100];
   char temp[6];
@@ -24,13 +23,14 @@ int main (int argc, char *argv[])
   } 
 
   temp[5] = '\0';
-  temp[4] = buf[n-1];
-  temp[3] = buf[n-2];
-  temp[2] = buf[n-3];
-  temp[1] = buf[n-4];
-  temp[0] = buf[n-5];
+  temp[4] = buf[n-2];
+  temp[3] = buf[n-3];
+  temp[2] = buf[n-4];
+  temp[1] = buf[n-5];
+  temp[0] = buf[n-6];
   
-  printf("Temperature is '%s' C\n", temp/1000); 
+  printf("Temperature is '%s' C\n", temp); 
 
   (void)fclose(fd);
+  return 0;
 }
