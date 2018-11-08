@@ -12,7 +12,7 @@ int main (int argc, char *argv[])
   double tempe; 
   double temp_max;
   double temp_min;
-  double temp_now;
+  double temp_old;
   int i = 0;
   char maxtemp[100];
   char mintemp[100];
@@ -46,12 +46,12 @@ while(1){
   tempe = tempe/1000;  
 printf("temp is %.3f\n", tempe);
    for(i ;i<1;i++ ){
-	  double temp_max = tempe; 
-	  double temp_min = tempe;
-	  double temp_now = tempe;
-	  sprintf(newtemp,"Current temperature is %g", temp_now);
-	  sprintf(maxtemp,"Max temperature is %g", temp_max);
-	  sprintf(mintemp,"Min temperature is %g", temp_min);
+	  temp_max = tempe; 
+	  temp_min = tempe;
+	  temp_old = tempe;
+	  sprintf(newtemp,"Current temperature is %.3f", temp_old);
+	  sprintf(maxtemp,"Max temperature is %.3f", temp_max);
+	  sprintf(mintemp,"Min temperature is %.3f", temp_min);
 	  ifttt("https://maker.ifttt.com/trigger/alarm_triggered/with/key/dImUb3e_p6ayih5X2iy8RE", newtemp, maxtemp, mintemp);
 
    }
@@ -64,12 +64,12 @@ printf("temp is %.3f\n", tempe);
 		temp_max = tempe;
    }
    
-   if(abs(temp_now - tempe) > 1){
-	  sprintf(newtemp,"Current temperature is %g", temp_now);
-	  sprintf(maxtemp,"Max temperature is %g", temp_max);
-	  sprintf(mintemp,"Min temperature is %g", temp_min);
+   if( temp_old - tempe > 1 || tempe - temp_old >1 ){
+	  sprintf(newtemp,"Current temperature is %.3f", temp_old);
+	  sprintf(maxtemp,"Max temperature is %.3f", temp_max);
+	  sprintf(mintemp,"Min temperature is %.3f", temp_min);
 	  ifttt("https://maker.ifttt.com/trigger/alarm_triggered/with/key/dImUb3e_p6ayih5X2iy8RE", newtemp, maxtemp, mintemp);
-	  temp_now = tempe;
+	  temp_old = tempe;
    }
    
    ts = time(NULL);
